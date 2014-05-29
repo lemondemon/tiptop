@@ -1,0 +1,86 @@
+@import "compass/css3";
+
+.tiptop {
+	background-color: $background-color;
+	@include border-radius(50%);
+	display: block;
+	position: absolute;	
+	cursor: pointer;
+	z-index: $z-index;
+}
+
+.tiptopHover {
+	display: block;
+	position: absolute;
+	border-radius: 50%;
+}
+
+.tiptop .tiptopPopup {
+	@include box-sizing(border-box);
+	@include box-shadow($popup-shadow);
+	@include border-radius($popup-border-radius);
+	background-color: $background-color;
+	width: $popup-width;
+	padding: $popup-padding;
+	pointer-events: none;
+	position: absolute;
+	opacity: 0.0;
+}
+
+/* calcualte popup traingle via js */
+
+.tiptop .tiptopPopup:before {
+	content: "";
+	width: 0;
+	height: 0;
+	border-style: solid;
+	position: absolute;	
+}
+
+.tiptop .tiptopPopupDirectiont:before {
+	border-width: 10px 10px 0 10px;
+	border-color: $background-color transparent transparent transparent;
+	bottom: -10px;
+	left: $popup-width / 2 - 10;
+}
+
+.tiptop .tiptopPopupDirectionb:before {
+	border-width: 0 10px 10px 10px;
+	border-color: transparent transparent $background-color transparent;
+	top: -10px;
+	left: $popup-width / 2 - 10 ;
+}
+
+.tiptop .tiptopPopupDirectionr:before {
+	border-width: 10px 10px 10px 0;
+	border-color: transparent $background-color transparent transparent;
+	top: 10px;
+	left: -10px;
+}
+
+.tiptop .tiptopPopupDirectionl:before {
+	border-width: 10px 0 10px 10px;
+	border-color: transparent transparent transparent $background-color;
+	top: 10px;
+	right: -10px;
+}
+
+.tiptop:hover .tiptopPopup {
+	opacity: 1;
+}
+
+.tiptopPopup .title {
+	font-size: $title-font-size;
+	line-height: $title-line-height;
+	color: $title-font-color;
+	margin: 0;
+	white-space: normal;
+}
+
+.tiptopPopup .text {
+	font-size: $text-font-size;
+	line-height: $text-line-height;
+	color: $text-font-color;
+	margin: 0;
+	white-space: normal;
+}

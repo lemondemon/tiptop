@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Narrow Jumbotron Template for Bootstrap</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Tiptop styles -->
+    <link rel="stylesheet" href="tiptop.css">
+
+    <!-- Custom styles for this template -->
+    <style type="text/css">
+        /* Space out content a bit */
+        body {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        /* Everything but the jumbotron gets side spacing for mobile first views */
+        .header,
+        .marketing,
+        .footer {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        /* Custom page header */
+        .header {
+            border-bottom: 1px solid #e5e5e5;
+        }
+        /* Make the masthead heading the same height as the navigation */
+        .header h3 {
+            padding-bottom: 19px;
+            margin-top: 0;
+            margin-bottom: 0;
+            line-height: 40px;
+        }
+
+        /* Custom page footer */
+        .footer {
+            padding-top: 19px;
+            color: #777;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        /* Customize container */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 730px;
+            }
+        }
+        .container-narrow > hr {
+            margin: 30px 0;
+        }
+
+        /* Main marketing message and sign up button */
+        .jumbotron {
+            text-align: center;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .jumbotron .btn {
+            padding: 14px 24px;
+            font-size: 21px;
+        }
+
+        /* Supporting marketing content */
+        .marketing {
+            margin: 40px 0;
+        }
+        .marketing p + h4 {
+            margin-top: 28px;
+        }
+
+        /* Responsive: Portrait tablets and up */
+        @media screen and (min-width: 768px) {
+            /* Remove the padding we set earlier */
+            .header,
+            .marketing,
+            .footer {
+                padding-right: 0;
+                padding-left: 0;
+            }
+            /* Space out the masthead */
+            .header {
+                margin-bottom: 30px;
+            }
+            /* Remove the bottom border on the jumbotron for visual effect */
+            .jumbotron {
+                border-bottom: 0;
+            }
+        }
+
+    </style>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li id="tip1"><a href="#">Contact</a></li>
+            </ul>
+            <h3 class="text-muted tip2">Tiptop</h3>
+        </div>
+
+        <div class="jumbotron">
+            <h1>Tiptop demo</h1>
+            <p class="lead">Tooltip-based guide framework able to work<br> on top of any web application.</p>
+            <p><a class="btn btn-lg btn-success tip3" onclick="tiptop.toggle()" href="#" role="button">Show/hide tiptops</a></p>
+        </div>
+
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+                <h4>Subheading</h4>
+                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+                <h4 class="tip4">Subheading</h4>
+                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+
+            <div class="col-lg-6">
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+                <h4 class="tip5">Subheading</h4>
+                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+                <h4>Subheading</h4>
+                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; Company 2014</p>
+        </div>
+
+    </div> <!-- /container -->
+
+
+    <script type="text/javascript" src="tiptop.js"></script>
+    <script type="text/javascript">
+    
+        tiptop.init({
+            tips: {
+                '#tip1': {
+                    position: 'bc',
+                    title: '#tip1 test',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
+                },
+                '.tip2': {
+                    position: 'cl',
+                    title: '.tip2 test',
+                    text: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                },
+                '.tip3': {
+                    position: 'br',
+                    title: '.tip3 test',
+                    text: 'Use this button to show/hide tiptops'
+                },
+                '.tip4': {
+                    position: 'tc',
+                    title: '.tip4 test',
+                    text: 'Excepteur sint occaecat cupidatat non proident'
+                },
+                '.tip5': {
+                    position: 'cr',
+                    title: '.tip5 test',
+                    text: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                }
+            },
+            options: {
+                color: 'blue'
+            }
+        });
+
+        </script>
+
+
+</body>
+</html>

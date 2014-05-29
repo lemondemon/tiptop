@@ -1,0 +1,42 @@
+@import "compass/css3";
+
+$background-color: red;
+
+$z-index: 1;
+
+// use the same values as in tiptop.init();
+$dot-size: 10px;
+$hover-size: 30;
+
+$popup-shadow: 0px 0px 10px red;
+
+$popup-border-radius: 3px;
+
+$popup-width: 200px;
+$popup-padding: 20px;
+
+$title-font-size: 13px;
+$title-line-height: 16px;
+$title-font-color: white;
+
+$text-font-size: 12px;
+$text-line-height: 15px;
+$text-font-color: white;
+
+
+
+.tiptop:hover .tiptopPopup {
+    @include single-transition(opacity 0.2s ease-in-out);
+}
+
+.tiptopPopup {
+	.title {
+		text-transform: uppercase;
+		font-weight: bold;
+		padding-bottom: 10px;
+		text-align: left;
+	}
+	.text {
+		text-align: left;
+	}
+}
