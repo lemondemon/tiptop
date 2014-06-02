@@ -248,6 +248,8 @@
 		// extend default options with user global options
 		if (params.options) {
 			_options = me._extend({}, _defaults, params.options);	
+		} else {
+			_options = _defaults;
 		}
 
 		// extend each tip options with default options
