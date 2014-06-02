@@ -13,7 +13,7 @@
 			dotSize: 10,
 			hoverSize: 30
 		},
-		_visible = null,
+		_visible = true,
 		_options = {}
 		_tiptops = [],
 		_popupWidth = 200,
@@ -59,15 +59,17 @@
 			ele.insertBefore(temp, ele.firstChild);
 
 		}
-
-		_visible = true;
+		
 	};
 
 	Tiptop.prototype._prepareHtmlTemplate = function(title, text, positions, dotSize, hoverSize, hoverPos) {
 
 		var directions = ['top', 'right', 'bottom', 'left'],
-			popupPositionStyles = '';
+			popupPositionStyles = '',
+			display = '';
 
+
+		display = _visible ? 'display: block; ' : 'display: none; ';
 
 		directions.forEach(function(direction) {
 
@@ -77,7 +79,7 @@
 
 		});
 		
-		return '<div class="tiptop" style="width: ' + dotSize + 'px; height: ' + dotSize + 'px; top: ' + positions.top + 'px; left: '+ positions.left +'px">' +
+		return '<div class="tiptop" style="'+ display +'width: ' + dotSize + 'px; height: ' + dotSize + 'px; top: ' + positions.top + 'px; left: '+ positions.left +'px">' +
 					'<div class="tiptopPopup tiptopPopupDirection' + positions.popup.popupDirection + '" style="' + popupPositionStyles + '">' +
 						'<div class="title">' + title + '</div>' + 
 						'<div class="text">' + text + '</div>' +
@@ -261,15 +263,12 @@
 	Tiptop.prototype._onWindowResize = function() {
 		var me = this;
 
-		if(_visible) {
-			me.hide();
+		clearTimeout(me._resizeTimeout);
 
-			clearTimeout(me._resizeTimeout);
-
-			me._resizeTimeout = setTimeout(function(){
-				me._recalculateTipAndPopupPosition();
-			}, _resizeDelay);		
-		}
+		me._resizeTimeout = setTimeout(function(){
+			me._recalculateTipAndPopupPosition();
+		}, _resizeDelay);		
+		
 	};
 
 	Tiptop.prototype.init = function(params) {
@@ -291,6 +290,10 @@
 				_tiptops.push(temptip);
 			}
 			console.log('tiptops', _tiptops);
+		}
+
+		if (params.options.visible !== undefined) {
+			_visible = params.options.visible;
 		}
 
 		window.onresize = function() { 
