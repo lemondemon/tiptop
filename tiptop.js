@@ -2,7 +2,7 @@
 
 	/* todo: 	
 	 *
-	 *	add some indline styles instead of in file
+	 *	add some inline styles instead of in file
 	 *	tip width option
 	 */
 
@@ -13,10 +13,12 @@
 			dotSize: 10,
 			hoverSize: 30
 		},
-		_visible = true,
+		_visible = null,
 		_options = {}
 		_tiptops = [],
 		_popupWidth = 200,
+		_resizeTimeout = null,
+		_resizeDelay = 500,
 		Tiptop = function(){};
 
 	Tiptop.prototype._extend = function(params) {
@@ -57,6 +59,8 @@
 			ele.insertBefore(temp, ele.firstChild);
 
 		}
+
+		_visible = true;
 	};
 
 	Tiptop.prototype._prepareHtmlTemplate = function(title, text, positions, dotSize, hoverSize, hoverPos) {
@@ -242,6 +246,32 @@
 
 	};
 
+	Tiptop.prototype._recalculateTipAndPopupPosition = function() {
+		var me = this,
+			tips = document.querySelectorAll('.tiptop'),
+			tipsLength = tips.length; 
+
+		for (var i = 0; i < tipsLength; i++) {
+			tips[i].parentNode.removeChild(tips[i]);
+		}
+		
+		me._createTiptops();
+	};
+
+	Tiptop.prototype._onWindowResize = function() {
+		var me = this;
+
+		if(_visible) {
+			me.hide();
+
+			clearTimeout(me._resizeTimeout);
+
+			me._resizeTimeout = setTimeout(function(){
+				me._recalculateTipAndPopupPosition();
+			}, _resizeDelay);		
+		}
+	};
+
 	Tiptop.prototype.init = function(params) {
 		var me = this;
 
@@ -263,6 +293,10 @@
 			console.log('tiptops', _tiptops);
 		}
 
+		window.onresize = function() { 
+			me._onWindowResize();
+		};
+
 		me._createTiptops();
 	};	
 
@@ -281,7 +315,7 @@
 	};
 
 	Tiptop.prototype.hide = function() {
-
+		
 		if (_visible) {
 			var tips = document.querySelectorAll('.tiptop'),
 				tipsLength = tips.length;
