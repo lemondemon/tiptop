@@ -1,6 +1,6 @@
 @import "compass/css3";
 
-@mixin animation($animation) {
+@mixin sass-animation($animation) {
 	-o-animation: $animation;
 	-moz-animation: $animation;
 	-webkit-animation: $animation;
@@ -24,7 +24,7 @@
 		height: 100%;
 		border-radius: 50%;
 		@include box-shadow(0 0 0.2em 0.12em $background-color);
-		@include animation(blip 1200ms infinite);
+		@include sass-animation(blip 1200ms infinite);
 	}
 }
 
