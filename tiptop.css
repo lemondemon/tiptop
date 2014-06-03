@@ -27,6 +27,42 @@
   cursor: pointer;
   z-index: 1;
 }
+.tiptop:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 0.2em 0.12em red;
+  -moz-box-shadow: 0 0 0.2em 0.12em red;
+  box-shadow: 0 0 0.2em 0.12em red;
+  -o-animation: blip 1200ms infinite;
+  -moz-animation: blip 1200ms infinite;
+  -webkit-animation: blip 1200ms infinite;
+  animation: blip 1200ms infinite;
+}
+
+@-webkit-keyframes blip {
+  0% {
+    -webkit-transform: scale(0.6, 0.6);
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -o-transform: scale(0.6, 0.6);
+    transform: scale(0.6, 0.6);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(2.6, 2.6);
+    -moz-transform: scale(2.6, 2.6);
+    -ms-transform: scale(2.6, 2.6);
+    -o-transform: scale(2.6, 2.6);
+    transform: scale(2.6, 2.6);
+    opacity: 0;
+  }
+}
 
 .tiptopHover {
   display: block;
