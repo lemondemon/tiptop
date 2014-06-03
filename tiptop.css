@@ -91,6 +91,9 @@
   right: -10px;
 }
 
+.tiptop:hover {
+  z-index: 10;
+}
 .tiptop:hover .tiptopPopup {
   opacity: 1;
 }

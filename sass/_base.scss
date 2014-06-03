@@ -65,8 +65,12 @@
 	right: -10px;
 }
 
-.tiptop:hover .tiptopPopup {
-	opacity: 1;
+.tiptop:hover {
+	z-index: 10;
+	
+	.tiptopPopup {
+		opacity: 1;
+	}
 }
 
 .tiptopPopup .title {
