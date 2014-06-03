@@ -8,7 +8,7 @@
 }
 
 .tiptop {
-	background-color: $background-color;
+	background-color: $dot-color;
 	@include border-radius(50%);
 	display: block;
 	position: absolute;	
@@ -23,7 +23,7 @@
 		width: 100%;
 		height: 100%;
 		border-radius: 50%;
-		@include box-shadow(0 0 0.2em 0.12em $background-color);
+		@include box-shadow(0 0 0.2em 0.12em $dot-color);
 		@include sass-animation(blip 1200ms infinite);
 	}
 }
@@ -98,6 +98,11 @@
 .tiptop:hover {
 	z-index: 10;
 	
+	&:before {
+		@include sass-animation(none);
+		opacity: 0;
+	}
+
 	.tiptopPopup {
 		opacity: 1;
 	}

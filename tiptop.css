@@ -16,7 +16,7 @@
 }
 
 .tiptop {
-  background-color: red;
+  background-color: blue;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -35,9 +35,9 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  -webkit-box-shadow: 0 0 0.2em 0.12em red;
-  -moz-box-shadow: 0 0 0.2em 0.12em red;
-  box-shadow: 0 0 0.2em 0.12em red;
+  -webkit-box-shadow: 0 0 0.2em 0.12em blue;
+  -moz-box-shadow: 0 0 0.2em 0.12em blue;
+  box-shadow: 0 0 0.2em 0.12em blue;
   -o-animation: blip 1200ms infinite;
   -moz-animation: blip 1200ms infinite;
   -webkit-animation: blip 1200ms infinite;
@@ -129,6 +129,13 @@
 
 .tiptop:hover {
   z-index: 10;
+}
+.tiptop:hover:before {
+  -o-animation: none;
+  -moz-animation: none;
+  -webkit-animation: none;
+  animation: none;
+  opacity: 0;
 }
 .tiptop:hover .tiptopPopup {
   opacity: 1;
