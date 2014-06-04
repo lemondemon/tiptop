@@ -30,6 +30,7 @@
 .tiptop:before {
   content: " ";
   position: absolute;
+  background-color: rgba(255, 255, 255, 0.01);
   top: 0;
   left: 0;
   width: 100%;
@@ -45,6 +46,66 @@
 }
 
 @-webkit-keyframes blip {
+  0% {
+    -webkit-transform: scale(0.6, 0.6);
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -o-transform: scale(0.6, 0.6);
+    transform: scale(0.6, 0.6);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(2.6, 2.6);
+    -moz-transform: scale(2.6, 2.6);
+    -ms-transform: scale(2.6, 2.6);
+    -o-transform: scale(2.6, 2.6);
+    transform: scale(2.6, 2.6);
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes blip {
+  0% {
+    -webkit-transform: scale(0.6, 0.6);
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -o-transform: scale(0.6, 0.6);
+    transform: scale(0.6, 0.6);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(2.6, 2.6);
+    -moz-transform: scale(2.6, 2.6);
+    -ms-transform: scale(2.6, 2.6);
+    -o-transform: scale(2.6, 2.6);
+    transform: scale(2.6, 2.6);
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes blip {
+  0% {
+    -webkit-transform: scale(0.6, 0.6);
+    -moz-transform: scale(0.6, 0.6);
+    -ms-transform: scale(0.6, 0.6);
+    -o-transform: scale(0.6, 0.6);
+    transform: scale(0.6, 0.6);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(2.6, 2.6);
+    -moz-transform: scale(2.6, 2.6);
+    -ms-transform: scale(2.6, 2.6);
+    -o-transform: scale(2.6, 2.6);
+    transform: scale(2.6, 2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes blip {
   0% {
     -webkit-transform: scale(0.6, 0.6);
     -moz-transform: scale(0.6, 0.6);

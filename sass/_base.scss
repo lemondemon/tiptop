@@ -1,10 +1,25 @@
 @import "compass/css3";
 
-@mixin sass-animation($animation) {
+@mixin tiptop-animation($animation) {
 	-o-animation: $animation;
 	-moz-animation: $animation;
 	-webkit-animation: $animation;
 	animation: $animation;
+}
+
+@mixin tiptop-keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content; 
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	} 
 }
 
 .tiptop {
@@ -18,17 +33,18 @@
 	&:before {
 		content: " ";
 		position: absolute;
+		background-color: rgba(255,255,255,0.01);
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
 		border-radius: 50%;
 		@include box-shadow(0 0 0.2em 0.12em $dot-color);
-		@include sass-animation(blip 1200ms infinite);
+		@include tiptop-animation(blip 1200ms infinite);
 	}
 }
 
-@-webkit-keyframes blip {
+@include tiptop-keyframes(blip) {
   0% {
     @include scale(0.6);
     opacity: 1;
@@ -99,7 +115,7 @@
 	z-index: 10;
 	
 	&:before {
-		@include sass-animation(none);
+		@include tiptop-animation(none);
 		opacity: 0;
 	}
 
