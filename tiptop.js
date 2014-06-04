@@ -305,9 +305,13 @@
 		if (params.tips) {
 			var temptip = {};
 			for (tip in params.tips) {
-				temptip = me._extend({}, _options, params.tips[tip]);
-				temptip.selector = tip;
-				_tiptops.push(temptip);
+				
+				if (document.querySelector(tip) !== null) {
+					temptip = me._extend({}, _options, params.tips[tip]);
+					temptip.selector = tip;
+					_tiptops.push(temptip);	
+				}
+
 			}
 			console.log('tiptops', _tiptops);
 		}
@@ -360,13 +364,17 @@
 			me.show();
 		}
 	};
+
 	Tiptop.prototype.destroy = function() {
 		var me = this;
 		
 		if (_created) {
 			me._destroyTiptops();	
 		}
-		
+	};
+
+	Tiptop.prototype.isVisible = function() {
+		return _visible;
 	};
 	
 	if (typeof define === 'function' && define.amd) {
