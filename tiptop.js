@@ -11,7 +11,8 @@
 			hoffset: 0,
 			voffset:  0,
 			dotSize: 10,
-			hoverSize: 30
+			hoverSize: 30,
+			showOnInit: false
 		},
 		_visible = true,
 		_created = false,
@@ -38,6 +39,13 @@
 		return params;
 	};
 
+	Tiptop.prototype.clearShowOnInit = function(tip) {
+		var me = this;
+		
+		tip.onmouseover = null;
+		me._removeClass(tip, 'showOnInit');
+	};
+
 	Tiptop.prototype._createTiptops = function() {
 		
 		var me = this;
@@ -49,7 +57,7 @@
 				hoverSize = _tiptops[tip].hoverSize,
 				dotSize = _tiptops[tip].dotSize,
 				hoverPos = -0.5 * (_tiptops[tip].hoverSize - _tiptops[tip].dotSize),
-				htmlTemplate = me._prepareHtmlTemplate(_tiptops[tip].title, _tiptops[tip].text, positions, dotSize, hoverSize, hoverPos);
+				htmlTemplate = me._prepareHtmlTemplate(_tiptops[tip].title, _tiptops[tip].text, positions, dotSize, hoverSize, hoverPos, _tiptops[tip].showOnInit);
 
 			ele.style.position = 'relative';
 
@@ -58,7 +66,6 @@
 			temp.innerHTML = htmlTemplate;
 
 			ele.insertBefore(temp, ele.firstChild);
-
 		}
 
 		_created = true;
@@ -78,11 +85,13 @@
 		_resizeTimeout = null;
 	};
 
-	Tiptop.prototype._prepareHtmlTemplate = function(title, text, positions, dotSize, hoverSize, hoverPos) {
+	Tiptop.prototype._prepareHtmlTemplate = function(title, text, positions, dotSize, hoverSize, hoverPos, showOnInit) {
 
 		var directions = ['top', 'right', 'bottom', 'left'],
 			popupPositionStyles = '',
-			display = '';
+			display = '',
+			extraClasses = '',
+			extraParams = '';
 
 
 		display = _visible ? 'display: block; ' : 'display: none; ';
@@ -94,8 +103,13 @@
 			}
 
 		});
+
+		if (showOnInit) {
+			extraClasses += ' showOnInit';
+			extraParams += ' onmouseover="tiptop.clearShowOnInit(this)"';
+		}
 		
-		return '<div class="tiptop" style="'+ display +'width: ' + dotSize + 'px; height: ' + dotSize + 'px; top: ' + positions.top + 'px; left: '+ positions.left +'px">' +
+		return '<div'+ extraParams +' class="tiptop'+ extraClasses +'" style="'+ display +'width: ' + dotSize + 'px; height: ' + dotSize + 'px; top: ' + positions.top + 'px; left: '+ positions.left +'px">' +
 					'<div class="tiptopPopup tiptopPopupDirection' + positions.popup.popupDirection + '" style="' + popupPositionStyles + '">' +
 						'<div class="title">' + title + '</div>' + 
 						'<div class="text">' + text + '</div>' +
@@ -286,6 +300,14 @@
 		}, _resizeDelay);		
 		
 	};
+
+	Tiptop.prototype._removeClass = function(el, className) {
+		if (el.classList) {
+			el.classList.remove(className);			
+		} else {
+			el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');			
+		}
+	}
 
 	Tiptop.prototype.init = function(params) {
 		var me = this;
