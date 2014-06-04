@@ -128,11 +128,11 @@
 
         <div class="row marketing">
             <div class="col-lg-6">
-                <h4>Subheading</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+                <h4>Remove tiptops</h4>
+                <p>Click <a href="#" onclick="tiptop.destroy()">here</a> to destroy all tiptops!</p>
 
-                <h4>Subheading</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+                <h4>Re init tiptops</h4>
+                <p>Click <a href="#" onclick="createTiptops()">here</a> to destroy all tiptops!</p>
 
                 <h4 class="tip4">Subheading</h4>
                 <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
@@ -160,40 +160,44 @@
     <script type="text/javascript" src="tiptop.js"></script>
     <script type="text/javascript">
     
-        tiptop.init({
-            tips: {
-                '#tip1': {
-                    position: 'bc',
-                    title: '#tip1 test',
-                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
-                },
-                '.tip2': {
-                    position: 'cl',
-                    title: '.tip2 test',
-                    text: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
-                },
-                '.tip3': {
-                    position: 'br',
-                    title: '.tip3 test',
-                    text: 'Use this button to show/hide tiptops'
-                },
-                '.tip4': {
-                    position: 'tc',
-                    title: '.tip4 test',
-                    text: 'Excepteur sint occaecat cupidatat non proident'
-                },
-                '.tip5': {
-                    position: 'cr',
-                    title: '.tip5 test',
-                    text: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
-                }
-            },
-            options: {
-                color: 'blue'
-            }
-        });
 
-        </script>
+        var createTiptops = function() {
+            tiptop.init({
+                tips: {
+                    '#tip1': {
+                        position: 'bc',
+                        title: '#tip1 test',
+                        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
+                    },
+                    '.tip2': {
+                        position: 'cl',
+                        title: '.tip2 test',
+                        text: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                    },
+                    '.tip3': {
+                        position: 'br',
+                        title: '.tip3 test',
+                        text: 'Use this button to show/hide tiptops'
+                    },
+                    '.tip4': {
+                        position: 'tc',
+                        title: '.tip4 test',
+                        text: 'Excepteur sint occaecat cupidatat non proident'
+                    },
+                    '.tip5': {
+                        position: 'cr',
+                        title: '.tip5 test',
+                        text: 'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
+                    }
+                },
+                options: {
+                    color: 'blue'
+                }
+            });
+        }
+        
+        createTiptops();
+    </script>
 
 
 </body>

@@ -14,6 +14,7 @@
 			hoverSize: 30
 		},
 		_visible = true,
+		_created = false,
 		_options = {}
 		_tiptops = [],
 		_popupWidth = 200,
@@ -59,7 +60,22 @@
 			ele.insertBefore(temp, ele.firstChild);
 
 		}
-		
+
+		_created = true;
+	};
+
+	Tiptop.prototype._destroyTiptops = function() {
+		var tips = document.querySelectorAll('.tiptop'),
+			tipsLength = tips.length;
+
+		for (var i = 0; i < tipsLength; i++) {
+			tips[i].parentNode.removeChild(tips[i]);
+		}
+
+		_created = false;
+		_options = {};
+		_tiptops = [];
+		_resizeTimeout = null;
 	};
 
 	Tiptop.prototype._prepareHtmlTemplate = function(title, text, positions, dotSize, hoverSize, hoverPos) {
@@ -274,6 +290,10 @@
 	Tiptop.prototype.init = function(params) {
 		var me = this;
 
+		if (_created) {
+			me._destroyTiptops();	
+		}
+
 		// extend default options with user global options
 		if (params.options) {
 			_options = me._extend({}, _defaults, params.options);	
@@ -305,7 +325,7 @@
 
 	Tiptop.prototype.show = function() {
 
-		if (!_visible) {
+		if (_created && !_visible) {
 			var tips = document.querySelectorAll('.tiptop'),
 				tipsLength = tips.length; 
 
@@ -319,7 +339,7 @@
 
 	Tiptop.prototype.hide = function() {
 		
-		if (_visible) {
+		if (_created && _visible) {
 			var tips = document.querySelectorAll('.tiptop'),
 				tipsLength = tips.length;
 
@@ -334,11 +354,19 @@
 	Tiptop.prototype.toggle = function() {
 		var me = this;
 
-		if (_visible) {
+		if (_created && _visible) {
 			me.hide();
 		} else {
 			me.show();
 		}
+	};
+	Tiptop.prototype.destroy = function() {
+		var me = this;
+		
+		if (_created) {
+			me._destroyTiptops();	
+		}
+		
 	};
 	
 	if (typeof define === 'function' && define.amd) {
