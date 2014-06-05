@@ -39,11 +39,11 @@
 		return params;
 	};
 
-	Tiptop.prototype.clearShowOnInit = function(tip) {
-		var me = this;
-		
-		tip.onmouseover = null;
-		me._removeClass(tip, 'showOnInit');
+	Tiptop.prototype.clearShowOnInit = function(handler, event) {
+		var me = this;		
+
+		event.target.parentNode.removeEventListener('mouseover', handler.tempHandler, false);
+		me._removeClass(event.target.parentNode, 'showOnInit');
 	};
 
 	Tiptop.prototype._createTiptops = function() {
@@ -64,6 +64,14 @@
 			// TODO: remove empty parent div
 			var temp = document.createElement('div');
 			temp.innerHTML = htmlTemplate;
+
+			if (_tiptops[tip].showOnInit) {
+
+				// store temoHandler for each tip for better removing it in the future
+				_tiptops[tip].tempHandler = me.clearShowOnInit.bind(me, _tiptops[tip]);
+				
+				temp.querySelector('.showOnInit').addEventListener('mouseover', _tiptops[tip].tempHandler, false);
+			}
 
 			ele.insertBefore(temp, ele.firstChild);
 		}
@@ -90,8 +98,7 @@
 		var directions = ['top', 'right', 'bottom', 'left'],
 			popupPositionStyles = '',
 			display = '',
-			extraClasses = '',
-			extraParams = '';
+			extraClasses = '';
 
 
 		display = _visible ? 'display: block; ' : 'display: none; ';
@@ -106,10 +113,9 @@
 
 		if (showOnInit) {
 			extraClasses += ' showOnInit';
-			extraParams += ' onmouseover="tiptop.clearShowOnInit(this)"';
 		}
 		
-		return '<div'+ extraParams +' class="tiptop'+ extraClasses +'" style="'+ display +'width: ' + dotSize + 'px; height: ' + dotSize + 'px; top: ' + positions.top + 'px; left: '+ positions.left +'px">' +
+		return '<div class="tiptop'+ extraClasses +'" style="'+ display +'width: ' + dotSize + 'px; height: ' + dotSize + 'px; top: ' + positions.top + 'px; left: '+ positions.left +'px">' +
 					'<div class="tiptopPopup tiptopPopupDirection' + positions.popup.popupDirection + '" style="' + popupPositionStyles + '">' +
 						'<div class="title">' + title + '</div>' + 
 						'<div class="text">' + text + '</div>' +
