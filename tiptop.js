@@ -91,6 +91,7 @@
 		_options = {};
 		_tiptops = [];
 		_resizeTimeout = null;
+		window.onresize = null;
 	};
 
 	Tiptop.prototype._prepareHtmlTemplate = function(title, text, positions, dotSize, hoverSize, hoverPos, showOnInit) {
