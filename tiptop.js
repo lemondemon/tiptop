@@ -341,7 +341,6 @@
 				}
 
 			}
-			console.log('tiptops', _tiptops);
 		}
 
 		if (params.options.visible !== undefined) {
@@ -403,6 +402,10 @@
 
 	Tiptop.prototype.isVisible = function() {
 		return _visible;
+	};
+
+	Tiptop.prototype.isCreated = function() {
+		return _created;
 	};
 	
 	if (typeof define === 'function' && define.amd) {
