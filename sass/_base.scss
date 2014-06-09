@@ -115,8 +115,7 @@
 	z-index: 10;
 	
 	&:before {
-		@include tiptop-animation(none);
-		opacity: 0;
+		visibility: hidden;
 	}
 
 	.tiptopPopup {
