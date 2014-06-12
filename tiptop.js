@@ -16,6 +16,7 @@
 		},
 		_visible = true,
 		_created = false,
+		_willShowOnInit = false,
 		_canShowOnInit = true,
 		_options = {}
 		_tiptops = [],
@@ -41,10 +42,17 @@
 	};
 
 	Tiptop.prototype.clearShowOnInit = function(handler, event) {
-		var me = this;		
+		var me = this,
+			tips = document.querySelectorAll('.tiptop'),
+			tipsLength = tips.length;
 
-		event.target.parentNode.removeEventListener('mouseover', handler.tempHandler, false);
-		me._removeClass(event.target.parentNode, 'showOnInit');
+		for (var i = 0; i < tipsLength; i++) {
+
+			tips[i].parentNode.removeEventListener('mouseover', _tiptops[i].tempHandler, false);
+
+			me._removeClass(tips[i], 'showOnInit');
+		}
+		
 		_canShowOnInit = false;
 	};
 
@@ -67,14 +75,12 @@
 			var temp = document.createElement('div');
 			temp.innerHTML = htmlTemplate;
 
-			
-
-			if (_tiptops[tip].showOnInit && _canShowOnInit) {
-
-				// store temoHandler for each tip for better removing it in the future
-				_tiptops[tip].tempHandler = me.clearShowOnInit.bind(me, _tiptops[tip]);
+			if (_willShowOnInit && _canShowOnInit) {
 				
-				temp.querySelector('.showOnInit').addEventListener('mouseover', _tiptops[tip].tempHandler, false);
+				// store temoHandler for each tip for better removing it in the future
+				_tiptops[tip].tempHandler = me.clearShowOnInit.bind(me, _tiptops[tip]);	
+				
+				temp.addEventListener('mouseover', _tiptops[tip].tempHandler, false);
 			}
 
 			ele.insertBefore(temp, ele.firstChild);
@@ -348,6 +354,13 @@
 					temptip = me._extend({}, _options, params.tips[tip]);
 					temptip.selector = tip;
 					_tiptops.push(temptip);	
+
+
+					if (params.tips[tip].showOnInit) {
+						_willShowOnInit = true;
+					}
+
+
 				}
 
 			}
