@@ -16,6 +16,7 @@
 		},
 		_visible = true,
 		_created = false,
+		_canShowOnInit = true,
 		_options = {}
 		_tiptops = [],
 		_popupWidth = 200,
@@ -44,6 +45,7 @@
 
 		event.target.parentNode.removeEventListener('mouseover', handler.tempHandler, false);
 		me._removeClass(event.target.parentNode, 'showOnInit');
+		_canShowOnInit = false;
 	};
 
 	Tiptop.prototype._createTiptops = function() {
@@ -65,7 +67,9 @@
 			var temp = document.createElement('div');
 			temp.innerHTML = htmlTemplate;
 
-			if (_tiptops[tip].showOnInit) {
+			
+
+			if (_tiptops[tip].showOnInit && _canShowOnInit) {
 
 				// store temoHandler for each tip for better removing it in the future
 				_tiptops[tip].tempHandler = me.clearShowOnInit.bind(me, _tiptops[tip]);
@@ -117,7 +121,7 @@
 
 		});
 
-		if (showOnInit) {
+		if (showOnInit && _canShowOnInit) {
 			extraClasses += ' showOnInit';
 		}
 		
