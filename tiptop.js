@@ -80,11 +80,12 @@
 	};
 
 	Tiptop.prototype._destroyTiptops = function() {
-		var tips = document.querySelectorAll('.tiptop'),
+		var me = this,
+			tips = document.querySelectorAll('.tiptop'),
 			tipsLength = tips.length;
 
 		for (var i = 0; i < tipsLength; i++) {
-			tips[i].parentNode.removeChild(tips[i]);
+			me._removeTiptop(tips[i].parentNode);
 		}
 
 		_created = false;
@@ -92,6 +93,10 @@
 		_tiptops = [];
 		_resizeTimeout = null;
 		window.onresize = null;
+	};
+
+	Tiptop.prototype._removeTiptop = function(tiptop) {
+		tiptop.parentNode.removeChild(tiptop);
 	};
 
 	Tiptop.prototype._prepareHtmlTemplate = function(title, text, positions, dotSize, hoverSize, hoverPos, showOnInit) {
