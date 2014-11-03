@@ -1,0 +1,154 @@
+## Instalacja 
+
+Dwa wyjścia:
+- ściągnąc powyższe repozytorium do folderu proejktu
+- korzystając z bower'a   komenda: bower install tiptop
+
+
+## Używanie krok po kroku
+
+
+1. dołączyć style 
+
+<!-- Tiptop styles -->
+<link rel="stylesheet" href="tiptop.css">
+
+
+2. dołączyć js
+
+<script type="text/javascript" src="tiptop.js"></script>
+
+
+
+3. zainicjować tiptop z odpowiednimi parametrami
+
+
+tiptop.init();
+
+
+
+
+## Konfiguracja
+
+
+
+Przykład 1. 
+
+Używamy tylko tytułu oraz tekstu:
+
+
+tiptop.init({
+	tips: {
+		'#tip': {
+			title: 'tytuł 1',
+			text: 'text1'
+		},
+		'#tip': {
+			title: 'tytuł 1',
+			text: 'text1'
+		}
+	}
+});
+
+
+Przykład 2. 
+
+Ustalamy dodatkowe opcje dla wybranych tiptopów
+
+
+tiptop.init({
+	tips: {
+		'#tip': {
+			position: 'bc',
+			title: 'tytuł 1',
+			text: 'text1'
+		},
+		'#tip': {
+			title: 'tytuł 1',
+			text: 'text1',
+			showOnInit: true
+		}
+	}
+});
+
+
+
+Przykład 3 
+
+Zmieniamy opcje dla wszystkich tiptopów
+
+
+tiptop.init({
+	tips: {
+		'#tip': {
+			position: 'bc',
+			title: 'tytuł 1',
+			text: 'text1'
+		},
+		'#tip': {
+			title: 'tytuł 1',
+			text: 'text1',
+			showOnInit: true
+		}
+	},
+	options: {
+		dotSize: 10
+	}
+});
+
+
+
+
+
+
+
+Dostępne opcje: 
+
+
+postition - pozycja przypięcia kropki  tiptopa (i kierunek rozwijania popupa) względem elementu
+tl  - top left
+tc - top center
+tr - top right
+
+cl - center left
+cr - center right
+
+bl - bottom left
+bc bottom center
+br - bottom right
+
+
+
+
+hoffset - umożliwia przesunięcie pozycji kropki w osi poziomej/horyzontalnej
+voffset - umożliwia przesunięcie pozycji kropki w osi pionowej/vertycalnej
+dotSize - rozmiar kropki
+hoverSize - rozmiar pola na które można najechąć myszką aby rozwinąc tooltipa
+showOnInit - jeżeli true to dany tooltip będzie domyślnie pokazany
+
+
+
+
+
+
+## Metody
+
+tiptop.toggle() - chowa/pokazuje wszystkie tiptopy (kropki)
+tiptop.destroy() - usuwa wszystkie tiptopy
+
+
+
+
+## zmiana wyglądu
+
+tiptop zbudowany jest w oparciu o sass wieć zmiana wyglądu kropek i tooltipa nie powinna być problemem.
+
+
+Tiptop korzysta z zmiennych sass które znajdują się w pliku sass/_theme_default.scss których zrozumienie i edycja nie powinna nikomu sprawiać problemów.
+
+
+
+
+
+
+

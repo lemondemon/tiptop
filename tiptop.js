@@ -366,7 +366,7 @@
 			}
 		}
 
-		if (params.options.visible !== undefined) {
+		if (params.options !== undefined && params.options.visible !== undefined) {
 			_visible = params.options.visible;
 		}
 
